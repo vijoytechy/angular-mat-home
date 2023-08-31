@@ -10,8 +10,7 @@ import { HousingService } from '../housing.service';
   template: `
   <section>
     <form>
-    <input type="text" placeholder="Filter by city" #filter>
-    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+    <input type="text" placeholder="Search by cityname " (keyup)="filterResults($event)">
     </form>
   </section>
   <section class="results">
@@ -34,7 +33,8 @@ export class HomeComponent {
       });
   }
 
-  filterResults(text: string) {
+  filterResults(x: any) {
+    let text = x.target.value;
     if (!text) {
       this.filteredLocationList = this.housingLocationList;
     }
